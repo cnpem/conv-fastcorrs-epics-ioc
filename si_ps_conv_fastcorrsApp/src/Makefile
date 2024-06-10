@@ -36,9 +36,6 @@ si_ps_conv_fastcorrs_SRCS_vxWorks += -nil-
 si_ps_conv_fastcorrs_LIBS += pyDevSup$(PY_LD_VER)
 si_ps_conv_fastcorrs_LIBS += $(EPICS_BASE_IOC_LIBS)
 
-
-#PY += __init__.py
-#PY += cntmod.py
 PY += curr2strn.py
 PY += strn2curr.py
 #===========================

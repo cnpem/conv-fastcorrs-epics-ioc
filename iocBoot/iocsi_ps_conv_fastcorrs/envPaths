@@ -1,4 +1,0 @@
-epicsEnvSet("IOC","iocsi_ps_conv_fastcorrs")
-epicsEnvSet("TOP","/home/ABTLUS/gustavo.reis/EPICS/IOCs/si_ps_conv_fastcorrs")
-epicsEnvSet("PYDEVSUP","/home/ABTLUS/gustavo.reis/EPICS/support/pyDevSup/")
-epicsEnvSet("EPICS_BASE","/home/ABTLUS/gustavo.reis/EPICS/epics-base")

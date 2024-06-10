@@ -24,6 +24,7 @@ O.*/
 .cproject
 .project
 /python*/
+.iocsh_history
 
 # CSS files
 op/opi/logs.*

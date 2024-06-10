@@ -1,12 +1,10 @@
 record(ao, "copy-$(P)$(R)Current-SP"){
     field(OUT, "$(P)$(R)Current-SP CP")
-    field(PINI, "YES")
 }
 
 record(ao, "$(P)$(R)Kick-SP") {
     field(DTYP, "Python Device")
     field(OUT , "@strn2curr $(P)$(R) Current-SP")
-    field(SCAN, "Passive")
 }
 
 record(ai, "copy-$(P)$(R)Current-RB"){
