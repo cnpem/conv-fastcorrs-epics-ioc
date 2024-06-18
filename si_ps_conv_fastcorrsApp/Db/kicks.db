@@ -1,5 +1,5 @@
 record(ao, "copy-$(P)$(R)Current-SP"){
-    field(OUT, "$(P)$(R)Current-SP CP")
+    field(OUT, "$(P)$(R)Current-SP CA")
 }
 
 record(ao, "$(P)$(R)Kick-SP") {

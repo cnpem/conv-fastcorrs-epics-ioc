@@ -15,7 +15,8 @@ class Converter(object):
         self.base_record = getRecord("copy-" + parsed_args[0]+parsed_args[1])
 
     def process(self, rec, reason):
-        self.base_record.VAL = norm.conv_strength_2_current(rec.VAL, strengths_dipole=self.dipole_strehgth)
+        self.base_record.VAL = self.norm.conv_strength_2_current(rec.VAL, strengths_dipole=self.dipole_strength)
+        self.base_record.scan(sync=True)
 
     def detach(self, rec):
         pass
