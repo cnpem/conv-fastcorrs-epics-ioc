@@ -1,0 +1,24 @@
+version: "3.2"
+services:
+  ioc:
+    image: ghcr.io/cnpem/conv-fastcorrs-epics-ioc:${TAG}
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+      target: dynamic-link
+      labels:
+        org.opencontainers.image.source: https://github.com/cnpem/conv-fastcorrs-epics-ioc
+      args:
+        REPONAME: conv-fastcorrs-epics-ioc
+        RUNDIR: /opt/conv-fastcorrs-epics-ioc/iocBoot/iocsi_ps_conv_fastcorrs
+        BUILD_PACKAGES: libpython3-dev
+        RUNTIME_PACKAGES: libpython3.11 git
+        RUNTIME_PIP_PACKAGES: >
+          --no-deps --no-use-pep517
+          numpy==1.24
+          siriuspy==v2.96.0
+          mathphys==v2.10.0
+    environment:
+      P: ${P}
+      R: ${R}
+    network_mode: host
