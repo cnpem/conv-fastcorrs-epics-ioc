@@ -1,0 +1,4 @@
+[submodule "docker"]
+	path = docker
+	url = https://github.com/cnpem/epics-in-docker.git
+	branch = release
