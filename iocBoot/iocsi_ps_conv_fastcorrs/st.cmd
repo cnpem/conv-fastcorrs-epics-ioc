@@ -12,8 +12,7 @@ dbLoadDatabase "dbd/si_ps_conv_fastcorrs.dbd"
 si_ps_conv_fastcorrs_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
-#dbLoadRecords("db/cntrec.db","user=gustavoreis")
-dbLoadRecords("db/kicks.db","user=gustavoreis, P=$(P), R=$(R)")
+dbLoadRecords("db/sector.db","user=gustavoreis, SEC=$(SEC)")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
