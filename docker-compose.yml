@@ -19,6 +19,5 @@ services:
           siriuspy==v2.96.0
           mathphys==v2.10.0
     environment:
-      P: ${P}
-      R: ${R}
+      SEC: ${SEC}
     network_mode: host

@@ -1,0 +1,57 @@
+record(ao, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP"){
+    field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CA")
+}
+
+record(ao, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
+    field(DTYP, "Python Device")
+    field(OUT , "@strn2curr SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
+}
+
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB"){
+    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-RB CP")
+    field(PINI, "YES")
+    field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB PP")
+}
+
+record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB") {
+    field(DTYP, "Python Device")
+    field(INP , "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-RB")
+    field(SCAN, "Passive")
+}
+
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon"){
+    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon CP")
+    field(PINI, "YES")
+    field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon PP")
+}
+
+record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon") {
+    field(DTYP, "Python Device")
+    field(INP , "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): CurrentRef-Mon")
+    field(SCAN, "Passive")
+}
+
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon"){
+    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon CP")
+    field(PINI, "YES")
+    field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon PP")
+}
+
+record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon") {
+    field(DTYP, "Python Device")
+    field(INP , "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): FOFBAcc-Mon")
+    field(SCAN, "Passive")
+}
+
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon"){
+    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon CP")
+    field(PINI, "YES")
+    field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-Mon PP")
+}
+
+record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-Mon") {
+    field(DTYP, "Python Device")
+    field(INP , "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-Mon")
+    field(SCAN, "Passive")
+}
+
