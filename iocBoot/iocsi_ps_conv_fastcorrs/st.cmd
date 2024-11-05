@@ -12,10 +12,8 @@ dbLoadDatabase "dbd/si_ps_conv_fastcorrs.dbd"
 si_ps_conv_fastcorrs_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
-dbLoadRecords("db/sector.db","user=gustavoreis, SEC=$(SEC)")
+dbLoadRecords("db/sector.db","SEC=$(SEC)")
+dbLoadRecords("db/machine_params.db")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=gustavoreis"
