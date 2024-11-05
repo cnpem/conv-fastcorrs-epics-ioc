@@ -1,0 +1,4 @@
+record(ai, "copy-SI-Fam:PS-B1B2-1:EnergyRef-Mon") {
+    field(INP, "SI-Fam:PS-B1B2-1:EnergyRef-Mon CP")
+    field(PINI, "YES")
+}

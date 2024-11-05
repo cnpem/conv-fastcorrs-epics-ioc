@@ -11,11 +11,11 @@ class Converter(object):
         maname = MASearch.conv_psname_2_psmaname(psname)
         self.norm = NormalizerFactory.create(maname)
 
-        self.dipole_strength = 3
+        self.dipole_strength = getRecord("copy-SI-Fam:PS-B1B2-1:EnergyRef-Mon")
         self.base_record = getRecord("copy-" + parsed_args[0]+parsed_args[1])
 
     def process(self, rec, reason):
-        rec.VAL = self.norm.conv_current_2_strength(self.base_record.VAL, strengths_dipole=self.dipole_strength)
+        rec.VAL = self.norm.conv_current_2_strength(self.base_record.VAL, strengths_dipole=self.dipole_strength.VAL)
 
     def detach(self, rec):
         pass
