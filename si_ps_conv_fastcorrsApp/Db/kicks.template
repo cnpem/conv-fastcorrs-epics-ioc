@@ -1,57 +1,66 @@
-record(ao, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP"){
+record(ao, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
+    field(EGU, "A")
     field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CA")
 }
 
 record(ao, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
+    field(EGU, "urad")
     field(DTYP, "Python Device")
-    field(OUT , "@strn2curr SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
+    field(OUT, "@strn2curr SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
 }
 
-record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB"){
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB") {
+    field(EGU, "A")
     field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-RB CP")
     field(PINI, "YES")
     field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB PP")
 }
 
 record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB") {
+    field(EGU, "urad")
     field(DTYP, "Python Device")
-    field(INP , "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-RB")
+    field(INP, "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-RB")
     field(SCAN, "Passive")
 }
 
-record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon"){
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon") {
+    field(EGU, "A")
     field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon CP")
     field(PINI, "YES")
     field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon PP")
 }
 
 record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon") {
+    field(EGU, "urad")
     field(DTYP, "Python Device")
-    field(INP , "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): CurrentRef-Mon")
+    field(INP, "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): CurrentRef-Mon")
     field(SCAN, "Passive")
 }
 
-record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon"){
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon") {
+    field(EGU, "A")
     field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon CP")
     field(PINI, "YES")
     field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon PP")
 }
 
 record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon") {
+    field(EGU, "urad")
     field(DTYP, "Python Device")
-    field(INP , "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): FOFBAcc-Mon")
+    field(INP, "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): FOFBAcc-Mon")
     field(SCAN, "Passive")
 }
 
-record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon"){
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon") {
+    field(EGU, "A")
     field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon CP")
     field(PINI, "YES")
     field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-Mon PP")
 }
 
 record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-Mon") {
+    field(EGU, "urad")
     field(DTYP, "Python Device")
-    field(INP , "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-Mon")
+    field(INP, "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-Mon")
     field(SCAN, "Passive")
 }
-

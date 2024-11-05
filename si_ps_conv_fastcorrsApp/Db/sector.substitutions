@@ -1,12 +1,12 @@
 file "kicks.template"
 {
-    pattern { DIP, ORI}
-            { M1,  FCH}
-            { M1,  FCV}
-            { M2,  FCH}
-            { M2,  FCV}
-            { C2,  FCH}
-            { C2,  FCV}
-            { C3,  FCH}
-            { C3,  FCV}
+    pattern { DIP, ORI }
+            { M1,  FCH }
+            { M1,  FCV }
+            { M2,  FCH }
+            { M2,  FCV }
+            { C2,  FCH }
+            { C2,  FCV }
+            { C3,  FCH }
+            { C3,  FCV }
 }

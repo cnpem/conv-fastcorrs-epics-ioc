@@ -1,4 +1,5 @@
 record(ai, "copy-SI-Fam:PS-B1B2-1:EnergyRef-Mon") {
+    field(EGU, "Gev")
     field(INP, "SI-Fam:PS-B1B2-1:EnergyRef-Mon CP")
     field(PINI, "YES")
 }
