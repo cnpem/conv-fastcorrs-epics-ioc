@@ -9,10 +9,56 @@ record(ao, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
     field(OUT, "@strn2curr SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
 }
 
+record(sseq, "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current") {
+    field(PINI, "YES")
+    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-RB CP")
+    field(LNK1, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB PP")
+
+    field(DOL2, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon CP")
+    field(LNK2, "copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon PP")
+
+    field(DOL3, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon CP")
+    field(LNK3, "copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon PP")
+
+    field(DOL4, "SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon CP")
+    field(LNK4, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon PP")
+}
+
+record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRBCnct-Mon") {
+    field(PINI, "YES")
+    field(SCAN, "1 second")
+    field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL1V" )
+    field(ZNAM, "Ext PV Not Connected")
+    field(ONAM, "Ext PV OK")
+}
+
+record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRefCnct-Mon") {
+    field(PINI, "YES")
+    field(SCAN, "1 second")
+    field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL2V" )
+    field(ZNAM, "Ext PV Not Connected")
+    field(ONAM, "Ext PV OK")
+}
+
+record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAccCnct-Mon") {
+    field(PINI, "YES")
+    field(SCAN, "1 second")
+    field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL3V" )
+    field(ZNAM, "Ext PV Not Connected")
+    field(ONAM, "Ext PV OK")
+}
+
+record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRBCnct-Mon") {
+    field(PINI, "YES")
+    field(SCAN, "1 second")
+    field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL4V" )
+    field(ZNAM, "Ext PV Not Connected")
+    field(ONAM, "Ext PV OK")
+}
+
 record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB") {
     field(EGU, "A")
-    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-RB CP")
-    field(PINI, "YES")
+    field(SCAN, "Passive")
     field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB PP")
 }
 
@@ -25,8 +71,7 @@ record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB") {
 
 record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon") {
     field(EGU, "A")
-    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon CP")
-    field(PINI, "YES")
+    field(SCAN, "Passive")
     field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon PP")
 }
 
@@ -39,8 +84,7 @@ record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon") {
 
 record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon") {
     field(EGU, "A")
-    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon CP")
-    field(PINI, "YES")
+    field(SCAN, "Passive")
     field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon PP")
 }
 
@@ -53,8 +97,7 @@ record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon") {
 
 record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon") {
     field(EGU, "A")
-    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon CP")
-    field(PINI, "YES")
+    field(SCAN, "Passive")
     field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-Mon PP")
 }
 
