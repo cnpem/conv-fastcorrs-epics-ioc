@@ -1,5 +1,6 @@
 PYDEVSUP = /home/ABTLUS/gustavo.reis/EPICS/support/pyDevSup/
 EPICS_BASE = /home/ABTLUS/gustavo.reis/EPICS/epics-base
+CALC = /home/ABTLUS/gustavo.reis/EPICS/support/calc
 
 -include $(TOP)/../RELEASE.local
 -include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local

@@ -1,7 +1,7 @@
 #!../../bin/linux-x86_64/si_ps_conv_fastcorrs
 
 < envPaths
-
+epicsEnvSet("CALC","/home/ABTLUS/gustavo.reis/EPICS/support/calc")
 cd "${TOP}"
 
 ## Register all support components

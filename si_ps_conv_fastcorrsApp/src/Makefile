@@ -15,12 +15,13 @@ DBD += si_ps_conv_fastcorrs.dbd
 
 # si_ps_conv_fastcorrs.dbd will be made up from these files:
 si_ps_conv_fastcorrs_DBD += base.dbd
+si_ps_conv_fastcorrs_DBD += sseqRecord.dbd
 
 # Include dbd files from all support applications:
 si_ps_conv_fastcorrs_DBD += pyDevSup.dbd
 
 # Add all the support libraries needed by this IOC
-#si_ps_conv_fastcorrs_LIBS += xxx
+si_ps_conv_fastcorrs_LIBS += calc
 
 # si_ps_conv_fastcorrs_registerRecordDeviceDriver.cpp derives from si_ps_conv_fastcorrs.dbd
 si_ps_conv_fastcorrs_SRCS += si_ps_conv_fastcorrs_registerRecordDeviceDriver.cpp
