@@ -29,6 +29,7 @@ record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRBCnct-Mon") {
     field(SCAN, "1 second")
     field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL1V" )
     field(ZNAM, "Ext PV Not Connected")
+    field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
 }
 
@@ -37,6 +38,7 @@ record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRefCnct-Mon") {
     field(SCAN, "1 second")
     field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL2V" )
     field(ZNAM, "Ext PV Not Connected")
+    field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
 }
 
@@ -45,6 +47,7 @@ record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAccCnct-Mon") {
     field(SCAN, "1 second")
     field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL3V" )
     field(ZNAM, "Ext PV Not Connected")
+    field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
 }
 
@@ -53,6 +56,7 @@ record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRBCnct-Mon") {
     field(SCAN, "1 second")
     field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL4V" )
     field(ZNAM, "Ext PV Not Connected")
+    field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
 }
 
