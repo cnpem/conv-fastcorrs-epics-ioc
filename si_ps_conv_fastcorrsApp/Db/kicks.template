@@ -11,6 +11,54 @@ record(ao, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
     field(OUT, "@strn2curr SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
 }
 
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-DRVL") {
+    field(EGU, "A")
+    field(PREC, 3)
+    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.DRVL CP")
+    field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL PP")
+}
+
+record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DTYP, "Python Device")
+    field(SCAN, ".1 second")
+    field(INP, "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-DRVL")
+    field(FLNK, "fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL")
+}
+
+record(ao, "fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DOL, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL")
+    field(OMSL, "closed_loop")
+    field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP.DRVL")
+}
+
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-DRVH") {
+    field(EGU, "A")
+    field(PREC, 3)
+    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.DRVH CP")
+    field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH PP")
+}
+
+record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DTYP, "Python Device")
+    field(SCAN, ".1 second")
+    field(INP, "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-DRVH")
+    field(FLNK, "fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH")
+}
+
+record(ao, "fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DOL, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH")
+    field(OMSL, "closed_loop")
+    field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP.DRVH")
+}
+
 record(sseq, "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current") {
     field(PINI, "YES")
     field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-RB CP")
