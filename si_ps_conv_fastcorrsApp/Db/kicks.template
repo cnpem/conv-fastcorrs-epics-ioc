@@ -1,4 +1,4 @@
-record(ao, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
+record(ao, "out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
     field(EGU, "A")
     field(PREC, 3)
     field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CA")
@@ -24,6 +24,31 @@ record(ao, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
     field(PREC, 3)
     field(DTYP, "Python Device")
     field(OUT, "@strn2curr SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
+    field(FLNK, "out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP")
+}
+
+record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
+    field(EGU, "A")
+    field(PREC, 3)
+    field(SCAN, "Passive")
+    field(FLNK, "SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB PP")
+}
+
+record(ai, "SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DTYP, "Python Device")
+    field(INP, "@curr2strn SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
+    field(SCAN, "Passive")
+    field(FLNK, "fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
+}
+
+record(ao, "fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DOL, "SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
+    field(OMSL, "closed_loop")
+    field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP PP")
 }
 
 record(ai, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-DRVL") {
