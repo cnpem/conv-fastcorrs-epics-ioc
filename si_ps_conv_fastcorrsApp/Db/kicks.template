@@ -4,6 +4,21 @@ record(ao, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
     field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CA")
 }
 
+record(sseq, "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
+    field(PINI, "YES")
+    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CP")
+    field(LNK1, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP PP")
+}
+
+record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentSPCnct-Mon") {
+    field(PINI, "YES")
+    field(SCAN, "1 second")
+    field(INP , "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.DOL1V" )
+    field(ZNAM, "Ext PV Not Connected")
+    field(ZSV , "MAJOR")
+    field(ONAM, "Ext PV OK")
+}
+
 record(ao, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
     field(EGU, "urad")
     field(PREC, 3)
@@ -59,52 +74,61 @@ record(ao, "fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH") {
     field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP.DRVH")
 }
 
-record(sseq, "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current") {
+record(sseq, "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB") {
     field(PINI, "YES")
     field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-RB CP")
     field(LNK1, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB PP")
-
-    field(DOL2, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon CP")
-    field(LNK2, "copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon PP")
-
-    field(DOL3, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon CP")
-    field(LNK3, "copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon PP")
-
-    field(DOL4, "SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon CP")
-    field(LNK4, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon PP")
 }
 
 record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRBCnct-Mon") {
     field(PINI, "YES")
     field(SCAN, "1 second")
-    field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL1V" )
+    field(INP , "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB.DOL1V")
     field(ZNAM, "Ext PV Not Connected")
     field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
+}
+
+record(sseq, "proxy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon") {
+    field(PINI, "YES")
+    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon CP")
+    field(LNK1, "copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon PP")
 }
 
 record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRefCnct-Mon") {
     field(PINI, "YES")
     field(SCAN, "1 second")
-    field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL2V" )
+    field(INP , "proxy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon.DOL1V")
     field(ZNAM, "Ext PV Not Connected")
     field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
+}
+
+record(sseq, "proxy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon") {
+    field(PINI, "YES")
+    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon CP")
+    field(LNK1, "copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon PP")
 }
 
 record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAccCnct-Mon") {
     field(PINI, "YES")
     field(SCAN, "1 second")
-    field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL3V" )
+    field(INP , "proxy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon.DOL1V")
     field(ZNAM, "Ext PV Not Connected")
     field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
 }
 
-record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRBCnct-Mon") {
+record(sseq, "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon") {
+    field(PINI, "YES")
+    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon CP")
+    field(LNK1, "copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon PP")
+}
+
+record(bi, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentMonCnct-Mon") {
     field(PINI, "YES")
     field(SCAN, "1 second")
-    field(INP,"proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current.DOL4V" )
+    field(INP , "proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon.DOL1V")
     field(ZNAM, "Ext PV Not Connected")
     field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
