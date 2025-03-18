@@ -15,6 +15,7 @@ DBD += si_ps_conv_fastcorrs.dbd
 
 # si_ps_conv_fastcorrs.dbd will be made up from these files:
 si_ps_conv_fastcorrs_DBD += base.dbd
+si_ps_conv_fastcorrs_DBD += system.dbd
 si_ps_conv_fastcorrs_DBD += sseqRecord.dbd
 
 # Include dbd files from all support applications:
