@@ -10,7 +10,7 @@ si_ps_conv_fastcorrs_registerRecordDeviceDriver pdbbase
 ## Load record instances
 on error break
 system("./generate_crate_substitutions.py")
-dbLoadTemplate("db/crates.substitutions")
+dbLoadTemplate("db/crates.substitutions", "TEST=$(TEST)")
 dbLoadRecords("db/machine_params.db")
 
 cd "${TOP}/iocBoot/${IOC}"

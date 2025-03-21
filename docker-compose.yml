@@ -20,4 +20,5 @@ services:
           mathphys==v2.10.0
     environment:
       SEC_LIST: ${SEC_LIST}
+      TEST: ${TEST}
     network_mode: host
