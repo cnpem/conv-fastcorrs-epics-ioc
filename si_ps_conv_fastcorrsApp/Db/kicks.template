@@ -62,7 +62,7 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(SCAN, ".1 second")
+    field(SCAN, "5 second")
     field(INP, "@curr2strn $(TEST)SI-$(SEC)$(DIP):PS-$(ORI): Current-DRVL")
     field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL")
 }
@@ -86,7 +86,7 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(SCAN, ".1 second")
+    field(SCAN, "5 second")
     field(INP, "@curr2strn $(TEST)$(TEST)SI-$(SEC)$(DIP):PS-$(ORI): Current-DRVH")
     field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH")
 }
