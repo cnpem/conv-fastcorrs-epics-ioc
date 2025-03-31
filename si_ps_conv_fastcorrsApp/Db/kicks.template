@@ -23,7 +23,7 @@ record(ao, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(OUT, "@strn2curr $(TEST)SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
+    field(OUT, "@strn2curr $(TEST) $(SEC) $(DIP) $(ORI) Current-SP")
     field(FLNK, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP")
 }
 
@@ -38,7 +38,7 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST)SI-$(SEC)$(DIP):PS-$(ORI): Current-SP")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-SP")
     field(SCAN, "Passive")
     field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
 }
@@ -63,7 +63,7 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL") {
     field(PREC, 3)
     field(DTYP, "Python Device")
     field(SCAN, "5 second")
-    field(INP, "@curr2strn $(TEST)SI-$(SEC)$(DIP):PS-$(ORI): Current-DRVL")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-DRVL")
     field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL")
 }
 
@@ -87,7 +87,7 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH") {
     field(PREC, 3)
     field(DTYP, "Python Device")
     field(SCAN, "5 second")
-    field(INP, "@curr2strn $(TEST)$(TEST)SI-$(SEC)$(DIP):PS-$(ORI): Current-DRVH")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-DRVH")
     field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH")
 }
 
@@ -170,7 +170,7 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST)SI-$(SEC)$(DIP):PS-$(ORI): Current-RB")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-RB")
     field(SCAN, "Passive")
 }
 
@@ -185,7 +185,7 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST)SI-$(SEC)$(DIP):PS-$(ORI): CurrentRef-Mon")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) CurrentRef-Mon")
     field(SCAN, "Passive")
 }
 
@@ -200,7 +200,7 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST)SI-$(SEC)$(DIP):PS-$(ORI): FOFBAcc-Mon")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) FOFBAcc-Mon")
     field(SCAN, "Passive")
 }
 
@@ -215,6 +215,6 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-Mon") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST)SI-$(SEC)$(DIP):PS-$(ORI): Current-Mon")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-Mon")
     field(SCAN, "Passive")
 }
