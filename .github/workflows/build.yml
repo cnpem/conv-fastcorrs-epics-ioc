@@ -1,0 +1,13 @@
+name: Build image
+on:
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+
+jobs:
+  build_and_push:
+    permissions:
+      packages: write
+      contents: read
+    uses: cnpem/epics-in-docker/.github/workflows/ioc-images.yml@main
