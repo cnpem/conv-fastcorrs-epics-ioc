@@ -21,7 +21,8 @@ class Converter(object):
         maname = MASearch.conv_psname_2_psmaname(psname)
         self.norm = NormalizerFactory.create(maname)
 
-        self.dipole_strength = getRecord("copy-SI-Fam:PS-B1B2-1:EnergyRef-Mon")
+        self.dipole_strength = getRecord(
+            f"{test}copy-SI-{sec}:Fam:PS-B1B2-1:EnergyRef-Mon")
         self.base_record = getRecord(f"{test}out-{psname}:{base}")
 
     def process(self, rec, reason):
