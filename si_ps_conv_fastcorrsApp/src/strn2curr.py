@@ -8,13 +8,21 @@ class Converter(object):
     raw = True
 
     def __init__(self, rec, args):
-        parsed_args = args.split()
-        psname = parsed_args[0][:-1]
+        tokens = args.split()
+        if len(tokens) == 4:
+            test = ''
+            sec, dip, ori, base = tokens
+        elif len(tokens) == 5:
+            test, sec, dip, ori, base = tokens
+        else:
+            raise ValueError(f"Expected 4 or 5 values, got {len(tokens)}")
+
+        psname = f"SI-{sec}{dip}:PS-{ori}"
         maname = MASearch.conv_psname_2_psmaname(psname)
         self.norm = NormalizerFactory.create(maname)
 
         self.dipole_strength = getRecord("copy-SI-Fam:PS-B1B2-1:EnergyRef-Mon")
-        self.base_record = getRecord("out-" + parsed_args[0]+parsed_args[1])
+        self.base_record = getRecord(f"{test}out-{psname}:{base}")
 
     def process(self, rec, reason):
         self.base_record.VAL = self.norm.conv_strength_2_current(
