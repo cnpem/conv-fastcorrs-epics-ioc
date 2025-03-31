@@ -1,3 +1,9 @@
+file "machine_params.template"
+{
+    pattern {SEC}
+            {$(SEC)}
+}
+
 file "kicks.template"
 {
     pattern { DIP, ORI }
