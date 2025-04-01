@@ -26,5 +26,5 @@ SEC_LIST={section_list} docker compose up -d
 You can build the IOC with the following command:
 
 ```bash
-docker compose build
+TAG=latest docker compose build
 ```
