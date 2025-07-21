@@ -1,11 +1,9 @@
 include "kick_curr_pairs.db"
 
 # Records for sync Kick and Current setpoints
-record(ao, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
-    field(EGU, "A")
-    field(PREC, 3)
-    field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CA")
-}
+# The record processing chain here is the following:
+# proxy-Current-SP -> copy-Current-SP -> KickSP-RB -> fwd-KickSP-RB -> Kick-SP -> out-Current-SP
+# For this reason, when out-Current-SP is reached, KickSP-RB will still be processing.
 
 record(sseq, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
     field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CP")
@@ -37,14 +35,6 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
     field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
 }
 
-record(ao, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DTYP, "Python Device")
-    field(OUT, "@strn2curr $(TEST) $(SEC) $(DIP) $(ORI) Current-SP")
-    field(FLNK, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP")
-}
-
 record(ao, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
     field(EGU, "urad")
     field(PREC, 3)
@@ -53,3 +43,17 @@ record(ao, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
     field(OUT, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP PP")
 }
 
+record(ao, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DTYP, "Python Device")
+    field(OUT, "@strn2curr $(TEST) $(SEC) $(DIP) $(ORI) Current-SP")
+    field(FLNK, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP")
+}
+
+record(ao, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
+    field(EGU, "A")
+    field(PREC, 3)
+    field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CA")
+    field(SDIS, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB.PACT")
+}
