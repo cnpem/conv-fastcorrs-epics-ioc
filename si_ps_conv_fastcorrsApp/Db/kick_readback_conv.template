@@ -1,0 +1,28 @@
+record(sseq, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):$(CURRSUFFIX)") {
+    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):$(CURRSUFFIX) CP")
+    field(LNK1, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):$(CURRSUFFIX) PP")
+}
+
+record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Cnct$(CURRSUFFIX)") {
+    field(PINI, "YES")
+    field(SCAN, "1 second")
+    field(INP, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):$(CURRSUFFIX).DOL1V")
+    field(ZNAM, "Ext PV Not Connected")
+    field(ZSV, "MAJOR")
+    field(ONAM, "Ext PV OK")
+}
+
+record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):$(CURRSUFFIX)") {
+    field(EGU, "A")
+    field(PREC, 3)
+    field(SCAN, "Passive")
+    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):$(KICKSUFFIX)")
+}
+
+record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):$(KICKSUFFIX)") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DTYP, "Python Device")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) $(CURRSUFFIX)")
+    field(SCAN, "Passive")
+}
