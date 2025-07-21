@@ -1,0 +1,15 @@
+file "kick_readback_conv.template"
+{
+    pattern { CURRSUFFIX      , KICKSUFFIX   }
+            { "Current-RB"    , "Kick-RB"    }
+            { "CurrentRef-Mon", "KickRef-Mon"}
+            { "FOFBAcc-Mon"   , "KickAcc-Mon"}
+            { "Current-Mon"   , "Kick-Mon"   }
+}
+
+file "kick_setpoint_limits.template"
+{
+    pattern { TYPE }
+            { "DRVL" }
+            { "DRVH" }
+}

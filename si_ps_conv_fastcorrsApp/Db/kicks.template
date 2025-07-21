@@ -1,3 +1,6 @@
+include "kick_curr_pairs.db"
+
+# Records for sync Kick and Current setpoints
 record(ao, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
     field(EGU, "A")
     field(PREC, 3)
@@ -5,12 +8,11 @@ record(ao, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
 }
 
 record(sseq, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
-    field(PINI, "YES")
     field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CP")
     field(LNK1, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP PP")
 }
 
-record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):CurrentSPCnct-Mon") {
+record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):CnctCurrentSP-Mon") {
     field(PINI, "YES")
     field(SCAN, "1 second")
     field(INP,  "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.DOL1V" )
@@ -19,19 +21,11 @@ record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):CurrentSPCnct-Mon") {
     field(ONAM, "Ext PV OK")
 }
 
-record(ao, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DTYP, "Python Device")
-    field(OUT, "@strn2curr $(TEST) $(SEC) $(DIP) $(ORI) Current-SP")
-    field(FLNK, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP")
-}
-
 record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
     field(EGU, "A")
     field(PREC, 3)
     field(SCAN, "Passive")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB PP")
+    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
 }
 
 record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
@@ -43,6 +37,14 @@ record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
     field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
 }
 
+record(ao, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
+    field(EGU, "urad")
+    field(PREC, 3)
+    field(DTYP, "Python Device")
+    field(OUT, "@strn2curr $(TEST) $(SEC) $(DIP) $(ORI) Current-SP")
+    field(FLNK, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP")
+}
+
 record(ao, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
     field(EGU, "urad")
     field(PREC, 3)
@@ -51,170 +53,3 @@ record(ao, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
     field(OUT, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP PP")
 }
 
-record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-DRVL") {
-    field(EGU, "A")
-    field(PREC, 3)
-    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.DRVL CP")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL PP")
-}
-
-record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DTYP, "Python Device")
-    field(SCAN, "5 second")
-    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-DRVL")
-    field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL")
-}
-
-record(ao, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DOL, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVL")
-    field(OMSL, "closed_loop")
-    field(OUT, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP.DRVL")
-}
-
-record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-DRVH") {
-    field(EGU, "A")
-    field(PREC, 3)
-    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.DRVH CP")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH PP")
-}
-
-record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DTYP, "Python Device")
-    field(SCAN, "5 second")
-    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-DRVH")
-    field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH")
-}
-
-record(ao, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DOL, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-DRVH")
-    field(OMSL, "closed_loop")
-    field(OUT, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP.DRVH")
-}
-
-record(sseq, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB") {
-    field(PINI, "YES")
-    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-RB CP")
-    field(LNK1, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB PP")
-}
-
-record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):CurrentRBCnct-Mon") {
-    field(PINI, "YES")
-    field(SCAN, "1 second")
-    field(INP , "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB.DOL1V")
-    field(ZNAM, "Ext PV Not Connected")
-    field(ZSV , "MAJOR")
-    field(ONAM, "Ext PV OK")
-}
-
-record(sseq, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon") {
-    field(PINI, "YES")
-    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon CP")
-    field(LNK1, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon PP")
-}
-
-record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):CurrentRefCnct-Mon") {
-    field(PINI, "YES")
-    field(SCAN, "1 second")
-    field(INP , "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon.DOL1V")
-    field(ZNAM, "Ext PV Not Connected")
-    field(ZSV , "MAJOR")
-    field(ONAM, "Ext PV OK")
-}
-
-record(sseq, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon") {
-    field(PINI, "YES")
-    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon CP")
-    field(LNK1, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon PP")
-}
-
-record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):FOFBAccCnct-Mon") {
-    field(PINI, "YES")
-    field(SCAN, "1 second")
-    field(INP , "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon.DOL1V")
-    field(ZNAM, "Ext PV Not Connected")
-    field(ZSV , "MAJOR")
-    field(ONAM, "Ext PV OK")
-}
-
-record(sseq, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon") {
-    field(PINI, "YES")
-    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon CP")
-    field(LNK1, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon PP")
-}
-
-record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):CurrentMonCnct-Mon") {
-    field(PINI, "YES")
-    field(SCAN, "1 second")
-    field(INP , "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon.DOL1V")
-    field(ZNAM, "Ext PV Not Connected")
-    field(ZSV , "MAJOR")
-    field(ONAM, "Ext PV OK")
-}
-
-record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-RB") {
-    field(EGU, "A")
-    field(PREC, 3)
-    field(SCAN, "Passive")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB PP")
-}
-
-record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-RB") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-RB")
-    field(SCAN, "Passive")
-}
-
-record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):CurrentRef-Mon") {
-    field(EGU, "A")
-    field(PREC, 3)
-    field(SCAN, "Passive")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon PP")
-}
-
-record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickRef-Mon") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) CurrentRef-Mon")
-    field(SCAN, "Passive")
-}
-
-record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):FOFBAcc-Mon") {
-    field(EGU, "A")
-    field(PREC, 3)
-    field(SCAN, "Passive")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon PP")
-}
-
-record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickAcc-Mon") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) FOFBAcc-Mon")
-    field(SCAN, "Passive")
-}
-
-record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-Mon") {
-    field(EGU, "A")
-    field(PREC, 3)
-    field(SCAN, "Passive")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-Mon PP")
-}
-
-record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-Mon") {
-    field(EGU, "urad")
-    field(PREC, 3)
-    field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-Mon")
-    field(SCAN, "Passive")
-}
