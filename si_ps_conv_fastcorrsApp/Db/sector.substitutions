@@ -6,7 +6,7 @@ file "machine_params.template"
 
 file "kicks.template"
 {
-    pattern { DIP, ORI }
+    pattern { SUBSEC, PLANE }
             { M1,  FCH }
             { M1,  FCV }
             { M2,  FCH }

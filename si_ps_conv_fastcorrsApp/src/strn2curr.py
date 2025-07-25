@@ -11,13 +11,13 @@ class Converter(object):
         tokens = args.split()
         if len(tokens) == 4:
             test = ''
-            sec, dip, ori, base = tokens
+            sec, subsec, plane, base = tokens
         elif len(tokens) == 5:
-            test, sec, dip, ori, base = tokens
+            test, sec, subsec, plane, base = tokens
         else:
             raise ValueError(f"Expected 4 or 5 values, got {len(tokens)}")
 
-        psname = f"SI-{sec}{dip}:PS-{ori}"
+        psname = f"SI-{sec}{subsec}:PS-{plane}"
         maname = MASearch.conv_psname_2_psmaname(psname)
         self.norm = NormalizerFactory.create(maname)
 
