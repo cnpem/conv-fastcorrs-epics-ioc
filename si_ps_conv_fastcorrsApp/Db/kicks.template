@@ -5,55 +5,55 @@ include "kick_curr_pairs.db"
 # proxy-Current-SP -> copy-Current-SP -> KickSP-RB -> fwd-KickSP-RB -> Kick-SP -> out-Current-SP
 # For this reason, when out-Current-SP is reached, KickSP-RB will still be processing.
 
-record(sseq, "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
-    field(DOL1, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CP")
-    field(LNK1, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP PP")
+record(sseq, "$(TEST)proxy-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP") {
+    field(DOL1, "SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP CP")
+    field(LNK1, "$(TEST)copy-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP PP")
 }
 
-record(bi, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):CnctCurrentSP-Mon") {
+record(bi, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):CnctCurrentSP-Mon") {
     field(PINI, "YES")
     field(SCAN, "1 second")
-    field(INP,  "$(TEST)proxy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.DOL1V" )
+    field(INP,  "$(TEST)proxy-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP.DOL1V" )
     field(ZNAM, "Ext PV Not Connected")
     field(ZSV , "MAJOR")
     field(ONAM, "Ext PV OK")
 }
 
-record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
+record(ai, "$(TEST)copy-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP") {
     field(EGU, "A")
     field(PREC, 3)
     field(SCAN, "Passive")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
+    field(FLNK, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):KickSP-RB")
 }
 
-record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
+record(ai, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):KickSP-RB") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-SP")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(SUBSEC) $(PLANE) Current-SP")
     field(SCAN, "Passive")
-    field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
+    field(FLNK, "$(TEST)fwd-SI-$(SEC)$(SUBSEC):PS-$(PLANE):KickSP-RB")
 }
 
-record(ao, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB") {
+record(ao, "$(TEST)fwd-SI-$(SEC)$(SUBSEC):PS-$(PLANE):KickSP-RB") {
     field(EGU, "urad")
     field(PREC, 3)
-    field(DOL, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB")
+    field(DOL, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):KickSP-RB")
     field(OMSL, "closed_loop")
-    field(OUT, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP PP")
+    field(OUT, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):Kick-SP PP")
 }
 
-record(ao, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP") {
+record(ao, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):Kick-SP") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
-    field(OUT, "@strn2curr $(TEST) $(SEC) $(DIP) $(ORI) Current-SP")
-    field(FLNK, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP")
+    field(OUT, "@strn2curr $(TEST) $(SEC) $(SUBSEC) $(PLANE) Current-SP")
+    field(FLNK, "$(TEST)out-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP")
 }
 
-record(ao, "$(TEST)out-SI-$(SEC)$(DIP):PS-$(ORI):Current-SP") {
+record(ao, "$(TEST)out-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP") {
     field(EGU, "A")
     field(PREC, 3)
-    field(OUT, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP CA")
-    field(SDIS, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):KickSP-RB.PACT")
+    field(OUT, "SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP CA")
+    field(SDIS, "$(TEST)fwd-SI-$(SEC)$(SUBSEC):PS-$(PLANE):KickSP-RB.PACT")
 }

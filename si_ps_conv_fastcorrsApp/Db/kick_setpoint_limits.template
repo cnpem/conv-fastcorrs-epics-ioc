@@ -1,24 +1,24 @@
-record(ai, "$(TEST)copy-SI-$(SEC)$(DIP):PS-$(ORI):Current-$(TYPE)") {
-    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.$(TYPE) CP")
+record(ai, "$(TEST)copy-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-$(TYPE)") {
+    field(INP, "SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP.$(TYPE) CP")
     field(EGU, "A")
     field(PREC, 3)
-    field(INP, "SI-$(SEC)$(DIP):PS-$(ORI):Current-SP.$(TYPE) CP")
-    field(FLNK, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-$(TYPE)")
+    field(INP, "SI-$(SEC)$(SUBSEC):PS-$(PLANE):Current-SP.$(TYPE) CP")
+    field(FLNK, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):Kick-$(TYPE)")
 }
 
-record(ai, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-$(TYPE)") {
+record(ai, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):Kick-$(TYPE)") {
     field(EGU, "urad")
     field(PREC, 3)
     field(DTYP, "Python Device")
     field(SCAN, "5 second")
-    field(INP, "@curr2strn $(TEST) $(SEC) $(DIP) $(ORI) Current-$(TYPE)")
-    field(FLNK, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-$(TYPE)")
+    field(INP, "@curr2strn $(TEST) $(SEC) $(SUBSEC) $(PLANE) Current-$(TYPE)")
+    field(FLNK, "$(TEST)fwd-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Kick-$(TYPE)")
 }
 
-record(ao, "$(TEST)fwd-SI-$(SEC)$(DIP):PS-$(ORI):Kick-$(TYPE)") {
+record(ao, "$(TEST)fwd-SI-$(SEC)$(SUBSEC):PS-$(PLANE):Kick-$(TYPE)") {
     field(EGU, "urad")
     field(PREC, 3)
-    field(DOL, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-$(TYPE)")
+    field(DOL, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):Kick-$(TYPE)")
     field(OMSL, "closed_loop")
-    field(OUT, "$(TEST)SI-$(SEC)$(DIP):PS-$(ORI):Kick-SP.$(TYPE)")
+    field(OUT, "$(TEST)SI-$(SEC)$(SUBSEC):PS-$(PLANE):Kick-SP.$(TYPE)")
 }
